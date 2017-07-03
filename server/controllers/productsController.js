@@ -20,7 +20,7 @@ productsController.post = (req,res) => {
     imageUrl,
     productType,
     _creator: userId,
-    _Id: storeId
+    _store: storeId
   });
 
   product.save().then((newProduct) => {
@@ -35,7 +35,7 @@ productsController.post = (req,res) => {
 
 productsController.getAll = (req,res) => {
   db.Products.find({}).populate({
-    path: '_creator _Id',
+    path: '_creator _store',
   }).then((products) =>{
     return res.status(200).json({
       success: true,

@@ -6,15 +6,14 @@ const userController = {};
 
 userController.post = (req,res) => {
   console.log(req.body);
-  const { username, password, storeId } = req.body;
+  const { username, password } = req.body;
 
   //Validation
 
 
   const user = new db.User({
     username,
-    password,
-    storeId
+    password
   });
 
   user.save().then((newUser) => {
@@ -28,6 +27,20 @@ userController.post = (req,res) => {
     });
   });
 }
+
+
+userController.getAll = (req,res) => {
+  db.User.find({}).then((user) =>{
+    return res.status(200).json({
+      success: true,
+      data: user
+    })
+  }).catch((err) => {
+    res.status(500).json({
+      message: err
+    });
+  });
+};
 
 
 export default userController;

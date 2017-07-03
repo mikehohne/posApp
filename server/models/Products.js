@@ -16,7 +16,7 @@ const productsSchema = new Schema({
     type: Boolean, default: false
   },
   createdAt: { type: Date, default: Date.now },
-  _Id: { type: Schema.ObjectId, ref: 'Store'},
+  _store: { type: Schema.ObjectId, ref: 'Store'},
   _creator: { type: Schema.ObjectId, ref: 'User'},
   isActive: { type: Boolean, default: false},
   isDeleted: { type: Boolean, default: false}

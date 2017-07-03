@@ -30,9 +30,7 @@ storeController.post = (req,res) => {
 };
 
 storeController.getAll = (req,res) => {
-  db.Stores.find({}).populate({
-    path: '_creator'
-    }).then((stores) =>{
+  db.Stores.find({}).then((stores) =>{
     return res.status(200).json({
       success: true,
       data: stores
