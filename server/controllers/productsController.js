@@ -9,14 +9,18 @@ productsController.post = (req,res) => {
     title,
     description,
     imageUrl,
-    userId
+    productType,
+    userId,
+    storeId
   } = req.body;
 
   const product = new db.Products({
     title,
     description,
     imageUrl,
-    _creator: userId
+    productType,
+    _creator: userId,
+    _Id: storeId
   });
 
   product.save().then((newProduct) => {
@@ -31,13 +35,16 @@ productsController.post = (req,res) => {
 
 productsController.getAll = (req,res) => {
   db.Products.find({}).populate({
-    path: '_creator',
-    select: 'username createdAt'
+    path: '_creator _Id',
   }).then((products) =>{
     return res.status(200).json({
       success: true,
       data: products
     })
+  }).catch((err) => {
+    res.status(500).json({
+      message: err
+    });
   });
 };
 

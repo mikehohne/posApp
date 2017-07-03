@@ -15,7 +15,10 @@ const userSchema = new Schema({
     required: true,
     minlength: [8, 'Password must be 8 characters or more']
   },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
+  isDeleted: { type: Boolean, default: false },
+  isActive: { type: Boolean, default: true },
+  isAdmin: { type: Boolean, default: false }
 });
 
 const User = mongoose.model('User', userSchema);

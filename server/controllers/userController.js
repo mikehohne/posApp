@@ -6,14 +6,15 @@ const userController = {};
 
 userController.post = (req,res) => {
   console.log(req.body);
-  const { username, password } = req.body;
+  const { username, password, storeId } = req.body;
 
   //Validation
 
 
   const user = new db.User({
     username,
-    password
+    password,
+    storeId
   });
 
   user.save().then((newUser) => {
