@@ -10,6 +10,7 @@ const productsSchema = new Schema({
     required: true
   },
   productType: { type: String, required: true},
+  price: { type: Number, required: true},
   description: String,
   imageUrl: String,
   isDeleted: {

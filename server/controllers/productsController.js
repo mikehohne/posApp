@@ -4,10 +4,13 @@ import db from './../models';
 const productsController = {};
 
 
+//post product to db
 productsController.post = (req,res) => {
+
   const {
     title,
     description,
+    price,
     imageUrl,
     productType,
     userId,
@@ -17,6 +20,7 @@ productsController.post = (req,res) => {
   const product = new db.Products({
     title,
     description,
+    price,
     imageUrl,
     productType,
     _creator: userId,
@@ -33,6 +37,8 @@ productsController.post = (req,res) => {
   })
 };
 
+
+//get all products from db
 productsController.getAll = (req,res) => {
   db.Products.find({}).populate({
     path: '_creator _store',
