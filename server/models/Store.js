@@ -13,6 +13,7 @@ const storeSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
   isDeleted: { type: Boolean, default: false },
   isActive: { type: Boolean, default: true },
+  logoUrl: String
 });
 
 const Store = mongoose.model('Store', storeSchema);

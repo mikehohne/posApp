@@ -5,6 +5,11 @@ import basicController from './controllers/basicController';
 import userController from './controllers/userController';
 import productsController from './controllers/productsController';
 import storeController from './controllers/storeController';
+import giphyController from './controllers/apis/giphyController';
+import colorController from './controllers/apis/colorController';
+import logoController from './controllers/apis/logoController';
+
+
 
 
 
@@ -31,6 +36,18 @@ routes.get('/product/:_id', productsController.getOne);
 routes.post('/store', storeController.post);
 routes.get('/stores', storeController.getAll);
 routes.get('/store/:_id', storeController.getOne);
+
+//giphy routes
+routes.get('/call', giphyController.get);
+
+//color routes
+routes.get('/colors', colorController.get);
+
+//logo routes
+routes.get('/logoGenerator', logoController.get);
+
+
+
 
 
 
