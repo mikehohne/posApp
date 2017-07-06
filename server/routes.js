@@ -1,5 +1,6 @@
 import express from 'express';
 
+
 import basicController from './controllers/basicController';
 import userController from './controllers/userController';
 import productsController from './controllers/productsController';
@@ -15,7 +16,7 @@ const routes = express();
 routes.get('/', basicController.get);
 
 //user routes
-routes.post('/signup', userController.post);
+routes.post('/login', userController.post);
 routes.get('/users', userController.getAll)
 routes.get('/user/:_id', userController.getOne);
 
