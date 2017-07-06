@@ -5,7 +5,7 @@ const storeController = {};
 
 
 storeController.post = (req,res) => {
-  console.log(req.body);
+
   const { name, userId, username, password  } = req.body;
 
   //Validation
@@ -30,10 +30,28 @@ storeController.post = (req,res) => {
 };
 
 storeController.getAll = (req,res) => {
-  db.Stores.find({}).then((stores) =>{
+  db.Stores.find({}).populate({
+    path: '_creator'
+  }).then((stores) =>{
     return res.status(200).json({
       success: true,
       data: stores
+    })
+  }).catch((err) => {
+    res.status(500).json({
+      message: err
+    });
+  });
+};
+
+storeController.getOne = (req,res) => {
+  var id = req.params;
+  db.Stores.findOne({_id: id}).populate({
+    path: '_creator'
+  }).then((store) => {
+    return res.status(200).json({
+      success: true,
+      data: store
     })
   }).catch((err) => {
     res.status(500).json({

@@ -5,7 +5,7 @@ const userController = {};
 
 
 userController.post = (req,res) => {
-  console.log(req.body);
+
   const { username, password } = req.body;
 
   //Validation
@@ -31,6 +31,23 @@ userController.post = (req,res) => {
 
 userController.getAll = (req,res) => {
   db.User.find({}).then((user) =>{
+    return res.status(200).json({
+      success: true,
+      data: user
+    })
+  }).catch((err) => {
+    res.status(500).json({
+      message: err
+    });
+  });
+};
+
+
+userController.getOne = (req,res) => {
+  var id = req.params;
+  db.User.findOne({_id: id}).populate({
+    path: '_creator'
+  }).then((user) => {
     return res.status(200).json({
       success: true,
       data: user

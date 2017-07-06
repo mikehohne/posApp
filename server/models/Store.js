@@ -9,7 +9,7 @@ const storeSchema = new Schema({
     type: String,
     required: true
     },
-  _creator: { type: Schema.ObjectId, ref: 'User'},
+  _creator: { type: Schema.ObjectId, ref: 'User', required: true},
   createdAt: { type: Date, default: Date.now },
   isDeleted: { type: Boolean, default: false },
   isActive: { type: Boolean, default: true },

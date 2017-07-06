@@ -54,5 +54,21 @@ productsController.getAll = (req,res) => {
   });
 };
 
+productsController.getOne = (req,res) => {
+  var id = req.params;
+  db.Products.findOne({_id: id}).populate({
+    path: '_creator _store'
+  }).then((product) => {
+    return res.status(200).json({
+      success: true,
+      data: product
+    })
+  }).catch((err) => {
+    res.status(500).json({
+      message: err
+    });
+  });
+};
+
 
 export default productsController;

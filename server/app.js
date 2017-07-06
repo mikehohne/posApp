@@ -4,9 +4,9 @@ import bodyParser from 'body-parser';
 
 
 
-mongoose.connect('mongodb://localhost:27017/pos', () =>{
+mongoose.connect('mongodb://localhost:27017/pos', () => {
   console.log('Connected to mongodb');
-})
+});
 
 import routes from './routes'
 
