@@ -37,3 +37,17 @@ jspm_packages
 .node_repl_history
 
 .env
+
+typings
+**/app/**/*.js
+**/app/**/*.map
+node_modules
+jspm_packages
+bower_components
+
+.vs
+**/*.sou
+**/*.user
+bin
+obj
+packages
