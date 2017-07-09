@@ -1,27 +1,29 @@
 import db from './../models';
-import passport from 'passport';
-import local from 'passport-local';
-var LocalStrategy = require('passport-local').Strategy;
 
 const userController = {};
 
 
 userController.post = (req,res) => {
-  passport.use(new LocalStrategy(
-    function(username, password, done) {
-      User.findOne({ username: username }, function(err, user) {
-        if (err) { return done(err); }
-        if (!user) {
-          return done(null, false, { message: 'Incorrect username.' });
-        }
-        if (!user.validPassword(password)) {
-          return done(null, false, { message: 'Incorrect password.' });
-        }
-        return done(null, user);
-      });
-    }
-  ));
-};
+   const { username, password } = req.body;
+
+   //Validation
+
+   const user = new db.User({
+     username,
+     password
+   });
+
+   user.save().then((newUser) => {
+     res.status(200).json({
+       success: true,
+       data: newUser
+     })
+   }).catch((err) => {
+     res.status(500).json({
+       message: err
+     });
+   });
+ }
 
 
 userController.getAll = (req,res) => {
