@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
+
+import { ProductService } from './products/product.service';
+
 @Component({
-  selector: 'pm-app',
-  template: `
-  <h1>{{pageTitle}}</h1>
-  `
+  selector: 'pos-app',
+  moduleId: module.id,
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.css'],
+  providers: [ ProductService ]
 })
 
 export class AppComponent {
-    pageTitle: string = 'Hello World';
+    pageTitle: string = 'Demo Store Admin';
+    userName: string = 'Mike Hohne';
 }
